@@ -1,0 +1,271 @@
+{
+  "pure_single_language": [
+    {
+      "id": "pure_en_1",
+      "text": "she walked slowly through the forest listening carefully to every sound",
+      "expected_dominant": "en",
+      "expected_is_mixed": false
+    },
+    {
+      "id": "pure_fr_1",
+      "text": "je suis tres content de vous voir aujourd hui",
+      "expected_dominant": "fr",
+      "expected_is_mixed": false
+    },
+    {
+      "id": "pure_tr_1",
+      "text": "bugun hava cok guzel ve ben iyiyim",
+      "expected_dominant": "tr",
+      "expected_is_mixed": false
+    },
+    {
+      "id": "pure_ur_latn_1",
+      "text": "yaar bhai acha theek hain sab kuch",
+      "expected_dominant": "ur-Latn",
+      "expected_is_mixed": false
+    },
+    {
+      "id": "pure_tl_1",
+      "text": "ang mga bata ay masaya salamat po",
+      "expected_dominant": "tl",
+      "expected_is_mixed": false
+    },
+    {
+      "id": "pure_es_1",
+      "text": "hola como estas muy bien gracias y tu",
+      "expected_dominant": "es",
+      "expected_is_mixed": false
+    },
+    {
+      "id": "pure_de_1",
+      "text": "ich bin sehr gut danke wie geht es dir heute",
+      "expected_dominant": "de",
+      "expected_is_mixed": false
+    },
+    {
+      "id": "pure_sw_1",
+      "text": "habari asante rafiki pamoja tafadhali karibu sana",
+      "expected_dominant": "sw",
+      "expected_is_mixed": false
+    }
+  ],
+  "two_language_mixed": [
+    {
+      "id": "en_ur_hinglish_1",
+      "text": "yaar aaj subah se kuch nahi khaya, but honestly the biryani was worth it",
+      "expected_is_mixed": true,
+      "expected_languages_contain": ["ur-Latn", "en"],
+      "source": "Hinglish social media"
+    },
+    {
+      "id": "en_ur_hinglish_2",
+      "text": "bhai please help karo mujhe this assignment mein",
+      "expected_is_mixed": true,
+      "expected_languages_contain": ["ur-Latn"],
+      "source": "Hinglish WhatsApp"
+    },
+    {
+      "id": "en_fr_1",
+      "text": "I think donc je suis right about this whole situation",
+      "expected_is_mixed": true,
+      "expected_languages_contain": ["en", "fr"],
+      "source": "French-English code switching"
+    },
+    {
+      "id": "en_fr_2",
+      "text": "bonjour tout le monde, I hope everyone is having a great day",
+      "expected_is_mixed": true,
+      "expected_languages_contain": ["fr", "en"],
+      "source": "Formal French opening"
+    },
+    {
+      "id": "en_es_1",
+      "text": "no puedo creer how good this restaurant is en serio amigo",
+      "expected_is_mixed": true,
+      "expected_languages_contain": ["es", "en"],
+      "source": "Spanglish social media"
+    },
+    {
+      "id": "en_es_2",
+      "text": "I love this city pero the traffic es horrible every single day",
+      "expected_is_mixed": true,
+      "expected_languages_contain": ["es", "en"],
+      "source": "Spanglish"
+    },
+    {
+      "id": "en_es_3",
+      "text": "que paso bro why are you so upset about everything today",
+      "expected_is_mixed": true,
+      "expected_languages_contain": ["es", "en"],
+      "source": "Spanglish informal"
+    },
+    {
+      "id": "en_tl_1",
+      "text": "I need to go home na po salamat for everything talaga",
+      "expected_is_mixed": true,
+      "expected_languages_contain": ["tl", "en"],
+      "source": "Filipino English code-switching"
+    },
+    {
+      "id": "en_tl_2",
+      "text": "grabe ang traffic today hindi ako nakarating sa work",
+      "expected_is_mixed": true,
+      "expected_languages_contain": ["tl", "en"],
+      "source": "Filipino Twitter"
+    },
+    {
+      "id": "en_sw_1",
+      "text": "let me tell you habari asante rafiki for helping me out",
+      "expected_is_mixed": true,
+      "expected_languages_contain": ["sw", "en"],
+      "source": "Swahili-English mix"
+    },
+    {
+      "id": "en_sw_2",
+      "text": "asante sana I really appreciate everything you have done for us",
+      "expected_is_mixed": true,
+      "expected_languages_contain": ["sw", "en"],
+      "source": "Swahili opening"
+    },
+    {
+      "id": "en_de_1",
+      "text": "ich bin so tired today aber I still have to finish this project",
+      "expected_is_mixed": true,
+      "expected_languages_contain": ["de", "en"],
+      "source": "German-English mixing"
+    },
+    {
+      "id": "en_tr_1",
+      "text": "bugun cok guzel hava var and I feel amazing today honestly",
+      "expected_is_mixed": true,
+      "expected_languages_contain": ["tr", "en"],
+      "source": "Turkish-English"
+    },
+    {
+      "id": "en_it_1",
+      "text": "allora I think we should go certo questo posto e bellissimo",
+      "expected_is_mixed": true,
+      "expected_languages_contain": ["it", "en"],
+      "source": "Italian-English"
+    }
+  ],
+  "non_latin_script": [
+    {
+      "id": "en_hi_script_1",
+      "text": "hello यह बहुत अच्छा है really impressive work today",
+      "expected_is_mixed": true,
+      "expected_languages_contain": ["hi", "en"],
+      "source": "Devanagari mixed with English"
+    },
+    {
+      "id": "en_ar_script_1",
+      "text": "this is great هذا رائع جداً I am very impressed",
+      "expected_is_mixed": true,
+      "expected_languages_contain": ["ar", "en"],
+      "source": "Arabic script mixed with English"
+    },
+    {
+      "id": "pure_hi_1",
+      "text": "यह बहुत अच्छा काम है आपने बहुत मेहनत की",
+      "expected_dominant": "hi",
+      "expected_is_mixed": false
+    }
+  ],
+  "social_media": [
+    {
+      "id": "with_url_mention",
+      "text": "Check https://example.com @username this is great content today",
+      "expected_special_types": ["url", "mention"]
+    },
+    {
+      "id": "with_emoji_hashtag",
+      "text": "Great day 😊 #WorldCup what a match amazing stuff",
+      "expected_special_types": ["emoji", "hashtag"]
+    },
+    {
+      "id": "full_social_en_ur",
+      "text": "yaar check this out https://example.com #cricket @bhai ekdum zabardast match 😂",
+      "expected_is_mixed": true,
+      "expected_special_types": ["url", "hashtag", "mention", "emoji"],
+      "expected_languages_contain": ["ur-Latn"]
+    },
+    {
+      "id": "full_social_en_es",
+      "text": "hola @amigos check https://example.com #Fiesta this party was increible 🎉",
+      "expected_is_mixed": true,
+      "expected_special_types": ["mention", "url", "hashtag", "emoji"],
+      "expected_languages_contain": ["es"]
+    }
+  ],
+  "ascii_turkish": [
+    {
+      "id": "ascii_tr_1",
+      "text": "bugun hava cok guzel ama ben simdi gidiyorum eve tamam",
+      "expected_dominant": "tr",
+      "expected_is_mixed": false
+    },
+    {
+      "id": "ascii_tr_en_mixed",
+      "text": "the weather is nice today bugun cok guzel honestly",
+      "expected_is_mixed": true
+    }
+  ],
+  "roman_urdu_hinglish": [
+    {
+      "id": "roman_urdu_pure_1",
+      "text": "yaar aaj kuch nahi khaya bahut mushkil hai zindagi mein",
+      "expected_dominant": "ur-Latn",
+      "expected_is_mixed": false
+    },
+    {
+      "id": "hinglish_1",
+      "text": "yaar kya ho raha hai ekdum pagal ho gaye ho sab log",
+      "expected_dominant": "ur-Latn",
+      "expected_is_mixed": false
+    },
+    {
+      "id": "hinglish_2",
+      "text": "bhai this is literally the best khana I have ever had in my life",
+      "expected_is_mixed": true,
+      "expected_languages_contain": ["ur-Latn", "en"]
+    }
+  ],
+  "near_identical_pairs": [
+    {
+      "id": "es_pt_ambiguous",
+      "text": "como esta usted hoje muito bem obrigado por tudo",
+      "note": "Spanish/Portuguese mix — some spans may be und with ambiguous_candidates"
+    },
+    {
+      "id": "es_pt_resolved_by_hint",
+      "text": "hola como estas muy bien gracias",
+      "hint_languages": ["es", "en"],
+      "expected_dominant": "es",
+      "note": "With language hint, should resolve cleanly to Spanish"
+    }
+  ],
+  "three_language": [
+    {
+      "id": "en_ur_tr_1",
+      "text": "yaar aaj subah se kuch nahi khaya, ama gun cok guzel, honestly amazing day",
+      "expected_is_mixed": true,
+      "expected_languages_contain": ["ur-Latn", "tr", "en"]
+    },
+    {
+      "id": "en_fr_es_1",
+      "text": "bonjour everyone, I think que este lugar es magnifique really",
+      "expected_is_mixed": true,
+      "expected_languages_contain": ["fr", "en", "es"]
+    }
+  ],
+  "canonical": [
+    {
+      "id": "design_doc_example",
+      "text": "yaar aaj subah se kuch nahi khaya, ama gun cok guzel",
+      "expected_spans": [
+        {"language": "ur-Latn", "text_contains": "yaar"},
+        {"language": "tr", "text_contains": "ama"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "polystring"
+version = "0.1.0"
+description = "Span-level language detection for mixed-language text"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors = [{ name = "Saad Khan", email = "saadlohani@yahoo.com" }]
+keywords = ["nlp", "language-detection", "multilingual", "code-switching", "mixed-language"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Text Processing :: Linguistic",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Typing :: Typed",
+]
+dependencies = [
+    "lingua-language-detector>=2.0",
+    "regex>=2023.0",
+    "typing_extensions>=4.0; python_version<'3.11'",
+]
+
+[project.optional-dependencies]
+pandas = ["pandas>=1.5"]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov",
+    "ruff>=0.1",
+    "mypy>=1.0",
+    "pre-commit",
+]
+
+[project.urls]
+Homepage = "https://github.com/saadlohani/polystring"
+Documentation = "https://github.com/saadlohani/polystring#readme"
+"Bug Tracker" = "https://github.com/saadlohani/polystring/issues"
+Changelog = "https://github.com/saadlohani/polystring/blob/main/CHANGELOG.md"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/polystring"]
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.mypy]
+strict = true
+python_version = "3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "--cov=polystring --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["polystring"]
+omit = ["tests/*"]
