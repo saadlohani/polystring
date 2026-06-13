@@ -1,5 +1,4 @@
-﻿import pytest
-
+﻿
 from polystring.lexicons import CONFLICT_WORDS, LANGUAGE_LEXICONS, lexicon_lookup
 
 

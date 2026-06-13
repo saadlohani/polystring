@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-import unicodedata
-
 from polystring._models import Token
 from polystring._pipeline.stage1_preprocess import RawToken
 

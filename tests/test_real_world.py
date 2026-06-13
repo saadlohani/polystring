@@ -28,9 +28,7 @@ FIXTURES = json.loads(
 )
 
 
-# ---------------------------------------------------------------------------
-# Helpers
-# ---------------------------------------------------------------------------
+
 
 def _linguistic_langs(result) -> set[str]:
     return {s.language for s in result.linguistic_spans()}
@@ -40,9 +38,7 @@ def _has_language(result, lang: str) -> bool:
     return lang in _linguistic_langs(result)
 
 
-# ---------------------------------------------------------------------------
-# Pure single-language inputs — dominant language must be correct
-# ---------------------------------------------------------------------------
+
 
 @pytest.mark.parametrize("sample", FIXTURES["pure_single_language"])
 def test_pure_single_language_dominant(sample):
@@ -79,9 +75,7 @@ def test_pure_single_language_not_mixed(sample):
     )
 
 
-# ---------------------------------------------------------------------------
-# Mixed inputs — dominant-language detection
-# ---------------------------------------------------------------------------
+
 
 def test_mixed_urdu_english_dominant_is_urdu():
     """When most tokens are Urdu/Hinglish the dominant should be ur-Latn."""
@@ -111,10 +105,7 @@ def test_mixed_spanish_detected():
     )
 
 
-# ---------------------------------------------------------------------------
-# Mixed inputs that exercise the context-absorption limitation
-# These are xfail — they document a known gap, not a regression.
-# ---------------------------------------------------------------------------
+# xfail tests below document a known context-absorption limitation, not a regression
 
 @pytest.mark.xfail(
     reason="Stage 4 context absorption pulls short EN words into surrounding "
@@ -145,7 +136,7 @@ def test_german_english_mixed():
     strict=False,
 )
 def test_italian_english_mixed():
-    result = analyze("allora I think we should go certo questo posto bellissimo davvero")
+    result = analyze("allora I think we should go certo questo posto bellissimo")
     assert result.is_mixed is True
     assert _has_language(result, "it")
 
@@ -172,9 +163,7 @@ def test_french_english_mixed_dominant_en():
     assert _has_language(result, "en")
 
 
-# ---------------------------------------------------------------------------
-# Non-Latin script detection — these always work via Unicode ranges
-# ---------------------------------------------------------------------------
+
 
 @pytest.mark.xfail(
     reason="Single English words surrounding a Devanagari block are absorbed by "
@@ -200,9 +189,7 @@ def test_pure_devanagari_dominant():
     assert result.is_mixed is False
 
 
-# ---------------------------------------------------------------------------
-# Social media — special tokens extracted cleanly
-# ---------------------------------------------------------------------------
+
 
 def test_url_extracted_as_special():
     result = analyze("visit https://example.com for more info please today")
@@ -250,9 +237,7 @@ def test_urdu_english_social_media():
     assert _has_language(result, "ur-Latn")
 
 
-# ---------------------------------------------------------------------------
-# Roman Urdu / Hinglish (pure)
-# ---------------------------------------------------------------------------
+
 
 def test_roman_urdu_pure_dominant():
     result = analyze("yaar aaj kuch nahi khaya bahut mushkil hai zindagi mein")
@@ -270,9 +255,7 @@ def test_hinglish_urdu_present():
     assert _has_language(result, "ur-Latn")
 
 
-# ---------------------------------------------------------------------------
-# Spanish / English (Spanglish)
-# ---------------------------------------------------------------------------
+
 
 def test_spanglish_detects_spanish():
     result = analyze("no puedo creer how good this restaurant is en serio amigo")
@@ -295,9 +278,7 @@ def test_spanish_pure_with_hint():
     assert result.dominant_language == "es"
 
 
-# ---------------------------------------------------------------------------
-# Near-identical pair handling
-# ---------------------------------------------------------------------------
+
 
 def test_es_pt_with_hint_resolves_to_es():
     result = analyze(
@@ -313,9 +294,7 @@ def test_near_identical_pair_does_not_crash():
     assert result is not None
 
 
-# ---------------------------------------------------------------------------
-# Canonical design-doc example
-# ---------------------------------------------------------------------------
+
 
 def test_canonical_design_doc_example():
     result = analyze("yaar aaj subah se kuch nahi khaya, ama gun cok guzel")
@@ -332,12 +311,10 @@ def test_canonical_ur_span_contains_yaar():
     )
 
 
-# ---------------------------------------------------------------------------
-# Confidence and metadata quality
-# ---------------------------------------------------------------------------
+
 
 def test_all_confidence_in_range():
-    result = analyze("je suis vraiment fatigue this week has been really rough honestly")
+    result = analyze("je suis vraiment fatigue this week has been really rough")
     for span in result.spans:
         assert 0.0 <= span.confidence <= 1.0, (
             f"span {span.text!r} has confidence {span.confidence} out of [0,1]"
@@ -362,9 +339,7 @@ def test_character_offsets_valid():
         )
 
 
-# ---------------------------------------------------------------------------
-# Serialisation round-trips
-# ---------------------------------------------------------------------------
+
 
 def test_to_dict_round_trip():
     result = analyze("je suis tres fatigue this week has been rough honestly")

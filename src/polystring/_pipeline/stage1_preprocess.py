@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import re
 import unicodedata
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 import regex as _regex
 
@@ -91,7 +91,8 @@ def _tokenize(masked_text: str) -> list[tuple[str, int, int]]:
         if not stripped:
             continue
         offset = token_text.index(stripped[0]) if stripped else 0
-        tokens.append((stripped, m.start() + offset, m.start() + offset + len(stripped)))
+        end = m.start() + offset + len(stripped)
+        tokens.append((stripped, m.start() + offset, end))
     return tokens
 
 
@@ -112,7 +113,7 @@ def run(
     text: str,
     normalize: bool = True,
 ) -> Stage1Result:
-    """Run Stage 1: special token extraction, NFC normalisation, tokenisation, NE candidates."""
+    """Stage 1: extract special tokens, NFC normalise, tokenise, tag NE candidates."""
     normalized = _nfc(text) if normalize else text
     specials, masked = _extract_special_tokens(normalized)
 
@@ -122,7 +123,9 @@ def run(
         if not tok.strip():
             continue
         is_ne = _is_ne_candidate(tok, idx, raw_tokens_raw)
-        linguistic_tokens.append(RawToken(text=tok, start=start, end=end, is_ne_candidate=is_ne))
+        linguistic_tokens.append(
+            RawToken(text=tok, start=start, end=end, is_ne_candidate=is_ne)
+        )
 
     return Stage1Result(
         linguistic_tokens=linguistic_tokens,

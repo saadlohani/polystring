@@ -73,7 +73,7 @@ class PolyStringResult:
             "confidence": self.confidence,
         }
 
-    def to_dataframe(self) -> "pd.DataFrame":
+    def to_dataframe(self) -> pd.DataFrame:
         try:
             import pandas as pd
         except ImportError as e:

@@ -2,7 +2,8 @@ from __future__ import annotations
 
 from polystring._detector import lingua_top2
 from polystring._models import Token
-from polystring._ngram import NGRAM_LANGUAGES, score as ngram_score
+from polystring._ngram import NGRAM_LANGUAGES
+from polystring._ngram import score as ngram_score
 from polystring._pipeline.stage1_preprocess import RawToken
 from polystring.lexicons import lexicon_lookup
 

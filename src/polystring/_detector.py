@@ -6,11 +6,11 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from lingua import LanguageDetector
 
-_detector: "LanguageDetector | None" = None
+_detector: LanguageDetector | None = None
 _detector_languages: frozenset[str] | None = None
 
 
-def _build_detector(languages: list[str] | None = None) -> "LanguageDetector":
+def _build_detector(languages: list[str] | None = None) -> LanguageDetector:
     from lingua import Language, LanguageDetectorBuilder
 
     if languages:
@@ -33,7 +33,7 @@ def _build_detector(languages: list[str] | None = None) -> "LanguageDetector":
     return builder.with_preloaded_language_models().build()
 
 
-def get_detector(languages: list[str] | None = None) -> "LanguageDetector":
+def get_detector(languages: list[str] | None = None) -> LanguageDetector:
     global _detector, _detector_languages
 
     key = frozenset(languages) if languages else None
@@ -45,7 +45,9 @@ def get_detector(languages: list[str] | None = None) -> "LanguageDetector":
 
 
 @functools.lru_cache(maxsize=4096)
-def lingua_top2(text: str, languages_key: frozenset[str] | None = None) -> list[tuple[str, float]]:
+def lingua_top2(
+    text: str, languages_key: frozenset[str] | None = None
+) -> list[tuple[str, float]]:
     detector = get_detector(list(languages_key) if languages_key else None)
     confidence_values = detector.compute_language_confidence_values(text)
     out: list[tuple[str, float]] = []

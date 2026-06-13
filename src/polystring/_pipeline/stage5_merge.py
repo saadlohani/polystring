@@ -62,7 +62,9 @@ def _tokens_to_spans(tokens: list[Token]) -> list[Span]:
     return spans
 
 
-def _insert_special_tokens(spans: list[Span], specials: list[SpecialToken]) -> list[Span]:
+def _insert_special_tokens(
+    spans: list[Span], specials: list[SpecialToken]
+) -> list[Span]:
     special_spans = [
         Span(
             text=st.text,
@@ -92,12 +94,15 @@ def _compute_dominant(spans: list[Span]) -> str:
 
 def _mark_foreign(spans: list[Span], dominant: str) -> None:
     for span in spans:
-        if span.token_type not in _NON_LINGUISTIC and span.language not in ("und", "ne"):
+        not_linguistic = span.token_type not in _NON_LINGUISTIC
+        if not_linguistic and span.language not in ("und", "ne"):
             span.is_foreign = span.language != dominant
 
 
 def _overall_confidence(spans: list[Span]) -> float:
-    linguistic = [s for s in spans if s.token_type == "text" and s.language not in ("und", "ne")]
+    linguistic = [
+        s for s in spans if s.token_type == "text" and s.language not in ("und", "ne")
+    ]
     if not linguistic:
         return 0.0
     return sum(s.confidence for s in linguistic) / len(linguistic)

@@ -1,5 +1,4 @@
-﻿import pytest
-
+﻿
 from polystring._models import Token
 from polystring._pipeline.stage4_context import run
 

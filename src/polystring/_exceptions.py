@@ -10,5 +10,8 @@ class UnsupportedLanguageError(PolyStringError):
 
 
 class InputTooShortError(PolyStringError):
-    def __init__(self, message: str = "Input too short: at least 2 tokens required after removing special tokens.") -> None:
+    def __init__(
+        self,
+        message: str = "Input too short: need at least 2 tokens.",
+    ) -> None:
         super().__init__(message)

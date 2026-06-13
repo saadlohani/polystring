@@ -23,7 +23,6 @@ ur-Latn/tl/sw, an Urdu word cannot "accidentally" accumulate Tagalog hits.
 from __future__ import annotations
 
 import json
-import math
 import re
 from pathlib import Path
 
@@ -59,7 +58,9 @@ def _load() -> None:
     _LOADED = True
 
 
-def _hit_score(cleaned: str, profile: dict[str, dict[str, float]], sizes: list[int]) -> tuple[int, float]:
+def _hit_score(
+    cleaned: str, profile: dict[str, dict[str, float]], sizes: list[int]
+) -> tuple[int, float]:
     """Count discriminative n-gram hits and sum their log-probs.
 
     Returns (hit_count, avg_log_prob_of_hits) where avg is 0 when hit_count=0.
@@ -81,7 +82,9 @@ def _hit_score(cleaned: str, profile: dict[str, dict[str, float]], sizes: list[i
     return hit_count, avg_lp
 
 
-def score(token: str, candidates: frozenset[str] | None = None) -> tuple[str, float] | None:
+def score(
+    token: str, candidates: frozenset[str] | None = None
+) -> tuple[str, float] | None:
     """Score token using discriminative character n-gram hit counts.
 
     Each language's profile contains only n-grams exclusive to that language

@@ -4,7 +4,13 @@ from typing import Literal
 
 from polystring._exceptions import InputTooShortError, UnsupportedLanguageError
 from polystring._models import PolyStringResult
-from polystring._pipeline import stage1_preprocess, stage2_script, stage3_classify, stage4_context, stage5_merge
+from polystring._pipeline import (
+    stage1_preprocess,
+    stage2_script,
+    stage3_classify,
+    stage4_context,
+    stage5_merge,
+)
 from polystring.lexicons import add_custom_lexicon
 
 # Languages supported by lingua's ISO 639-1 codes (subset used for validation)

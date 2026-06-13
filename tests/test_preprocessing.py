@@ -1,4 +1,3 @@
-import pytest
 
 from polystring._pipeline.stage1_preprocess import run
 

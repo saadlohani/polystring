@@ -2,7 +2,11 @@
 from __future__ import annotations
 
 from polystring._analyzer import analyze
-from polystring._exceptions import InputTooShortError, PolyStringError, UnsupportedLanguageError
+from polystring._exceptions import (
+    InputTooShortError,
+    PolyStringError,
+    UnsupportedLanguageError,
+)
 from polystring._models import PolyStringResult, Span, Token
 
 __version__ = "0.1.0"

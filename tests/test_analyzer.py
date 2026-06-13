@@ -8,7 +8,9 @@ from polystring import analyze
 from polystring._exceptions import InputTooShortError, UnsupportedLanguageError
 
 FIXTURES = json.loads(
-    (pathlib.Path(__file__).parent / "fixtures" / "mixed_text_samples.json").read_text(encoding="utf-8")
+    (pathlib.Path(__file__).parent / "fixtures" / "mixed_text_samples.json").read_text(
+        encoding="utf-8"
+    )
 )
 
 
@@ -84,7 +86,10 @@ def test_languages_hint():
 
 
 def test_custom_lexicon():
-    result = analyze("testword123unique hello world this is text", custom_lexicon={"de": ["testword123unique"]})
+    result = analyze(
+        "testword123unique hello world this is text",
+        custom_lexicon={"de": ["testword123unique"]},
+    )
     # The custom word should be recognized as German
     de_spans = [s for s in result.spans if s.language == "de"]
     assert len(de_spans) >= 1

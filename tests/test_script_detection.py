@@ -1,5 +1,4 @@
-﻿import pytest
-
+﻿
 from polystring._pipeline.stage1_preprocess import RawToken
 from polystring._pipeline.stage2_script import run
 

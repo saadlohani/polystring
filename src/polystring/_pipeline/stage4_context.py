@@ -46,7 +46,9 @@ def run(tokens: list[Token]) -> list[Token]:
             majority = _context_majority(tokens, idx)
             if majority:
                 tok.language = majority
-                tok.confidence = min(_UND_MAX_CONFIDENCE, tok.confidence or _UND_MAX_CONFIDENCE)
+                tok.confidence = min(
+                    _UND_MAX_CONFIDENCE, tok.confidence or _UND_MAX_CONFIDENCE
+                )
 
     # 4b. Single-token language islands absorbed (skip NE candidates — handled in 4e)
     for idx, tok in enumerate(tokens):
