@@ -16,8 +16,6 @@ for span in result.spans:
 # [en] 'this week has been rough'
 ```
 
----
-
 ## Why span-level detection matters
 
 | Tool           | What it returns for `"hola I love this city, en serio"`       |
@@ -28,8 +26,6 @@ for span in result.spans:
 | **polystring** | `[es] "hola"` · `[en] "I love this city"` · `[es] "en serio"` |
 
 Code-switching (mixing languages within a single sentence) is normal on social media, in diaspora communities, in customer support chats, and in any multilingual context. A single label for the whole input misses the structure entirely. polystring is built specifically for this problem.
-
----
 
 ## Installation
 
@@ -73,33 +69,6 @@ for span in result.spans:
 # [fr] 'des vacances'
 ```
 
-### Tagalog / English
-
-```python
-result = analyze("grabe the traffic today, hindi ako nakarating sa work on time")
-
-for span in result.spans:
-    print(f"[{span.language}] {span.text!r}")
-
-# [tl] 'grabe'
-# [en] 'the traffic today'
-# [tl] 'hindi ako nakarating sa work'
-# [en] 'on time'
-```
-
-### Swahili / English
-
-```python
-result = analyze("asante sana for everything, you have been very helpful kweli")
-
-for span in result.spans:
-    print(f"[{span.language}] {span.text!r}")
-
-# [sw] 'asante sana'
-# [en] 'for everything, you have been very helpful'
-# [sw] 'kweli'
-```
-
 ### Mixed with non-Latin scripts
 
 ```python
@@ -112,25 +81,6 @@ for span in result.spans:
 # [ar] 'هذا رائع جداً'
 # [en] 'I am very impressed'
 ```
-
-### Social media text
-
-URLs, mentions, hashtags, and emoji are extracted before detection and returned with their own `token_type`. They never corrupt the language signal.
-
-```python
-result = analyze("loved the match today #WorldCup https://example.com c'etait magnifique 😍")
-
-for span in result.spans:
-    print(f"{span.token_type:10} [{span.language:8}] {span.text!r}")
-
-# text       [en      ] 'loved the match today'
-# hashtag    [hashtag ] '#WorldCup'
-# url        [url     ] 'https://example.com'
-# text       [fr      ] "c'etait magnifique"
-# emoji      [emoji   ] '😍'
-```
-
----
 
 ## Working with results
 
@@ -182,8 +132,6 @@ result.linguistic_spans()
 # Returns spans with token_type == "text" only (no URLs, emoji, mentions, etc.)
 ```
 
----
-
 ## Span fields
 
 | Field                  | Type        | Description                                                                                   |
@@ -196,32 +144,16 @@ result.linguistic_spans()
 | `is_foreign`           | `bool`      | `True` if this span is not the dominant language                                              |
 | `ambiguous_candidates` | `list[str]` | Populated when `language == "und"` due to a near-identical pair (e.g. `["es", "pt"]`)         |
 
----
-
 ## Language coverage
 
 polystring detects **75 languages** via [lingua](https://github.com/pemistahl/lingua-py). Non-Latin scripts (Arabic, Devanagari, CJK, Cyrillic, Thai, Hebrew, Korean, and more) are identified directly from Unicode ranges, no model call needed.
 
-Nine languages have dedicated lexicons on top of the model, which significantly improves accuracy on short spans and code-switched text:
-
-| Language              | Code      | Notes                                         |
-| --------------------- | --------- | --------------------------------------------- |
-| Roman Urdu / Hinglish | `ur-Latn` | 300+ entries covering verbs, particles, nouns |
-| Spanish               | `es`      | 300+ entries                                  |
-| Portuguese            | `pt`      | 300+ entries                                  |
-| French                | `fr`      | 250+ entries                                  |
-| Italian               | `it`      | 250+ entries                                  |
-| German                | `de`      | 250+ entries                                  |
-| Turkish               | `tr`      | 150+ entries                                  |
-| Tagalog               | `tl`      | 200+ entries                                  |
-| Swahili               | `sw`      | 200+ entries                                  |
+Nine languages have dedicated lexicons on top of the model, which significantly improves accuracy on short spans and code-switched text: Roman Urdu / Hinglish, Spanish, Portuguese, Italian, German, Turkish, Tagalog, Swahili
 
 ```python
 import polystring
 print(polystring.supported_languages())  # full list of 75 ISO 639-1 codes
 ```
-
----
 
 ## Options
 
@@ -260,8 +192,6 @@ cd polystring
 pip install -e ".[dev]"
 pytest
 ```
-
----
 
 ## License
 
